@@ -1,3 +1,6 @@
 class Chat < ApplicationRecord
-  enum receiver_type: { person: "person", group: "group" }
+  PERSON = "person"
+  CHANNEL = "channel"
+
+  enum receiver_type: { person: PERSON, channel: CHANNEL }, _prefix: true
 end
