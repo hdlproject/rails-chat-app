@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2023_05_16_093328) do
     t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["username"], name: "uk_username", unique: true
   end
 
   create_table "users", force: :cascade do |t|
