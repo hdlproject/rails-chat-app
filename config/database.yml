@@ -12,7 +12,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  port: 5432
+  port: 5439
   database: rails-web-server
   pool: 5
   username: admin
@@ -40,7 +40,7 @@ test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  port: 5432
+  port: 5439
   database: rails-web-server
   pool: 5
   username: admin
@@ -50,7 +50,7 @@ production:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  port: 5432
+  port: 5439
   database: rails-web-server
   pool: 5
   username: admin
