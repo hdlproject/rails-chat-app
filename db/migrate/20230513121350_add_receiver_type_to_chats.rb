@@ -7,7 +7,7 @@ class AddReceiverTypeToChats < ActiveRecord::Migration[6.1]
   end
 
   def down
-    remove_column :chats, :receiver_type
+    remove_column :chats, :receiver_type, :receiver_type, null: false
     execute <<-SQL
       DROP TYPE receiver_type;
     SQL

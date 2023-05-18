@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
   get '/register', to: 'sessions#register'
+
+  get '/rooms/form', to: 'rooms#form'
+  resources :rooms
 end
