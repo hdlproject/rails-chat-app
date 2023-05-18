@@ -1,8 +1,18 @@
 class ChatsController < ApplicationController
   def index
-    @chats = Chat.all
+    if helpers.logged_in?
+      @user = helpers.current_user
 
-    render json: @chats
+      @chats = Chat.where(room_id: params[:room_id])
+      @members = User.where(id: params[:receiver_ids])
+
+      @receiver_ids = params[:receiver_ids]
+      @room_id = params[:room_id]
+
+      render "list"
+    else
+      redirect_to login_path
+    end
   end
 
   def show
@@ -12,9 +22,15 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chat = Chat.create(message: params[:message], sender_id: params[:sender_id], receiver_id: params[:receiver_id], receiver_type: params[:receiver_type])
+    if helpers.logged_in?
+      @user = helpers.current_user
 
-    render json: @chat
+      @chat = Chat.create(message: params[:message], sender_id: @user.id, room_id: params[:room_id])
+
+      redirect_to controller: "chats", action: "index", room_id: params[:room_id], receiver_ids: params[:receiver_ids]
+    else
+      redirect_to login_path
+    end
   end
 
   def update

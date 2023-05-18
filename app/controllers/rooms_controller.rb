@@ -5,7 +5,11 @@ class RoomsController < ApplicationController
 
       @items = []
       @user.rooms.each do |room|
-        @item = "[%s] %s" % [room.room_type, room.members.map {|member| member.name}.join(" - ")]
+        @item = {
+          text: "[%s] %s" % [room.room_type, room.members.map { |member| member.name }.join(" - ")],
+          room_id: room.id,
+          receiver_ids: room.members.map { |member| member.id if member.id != @user.id }
+        }
         @items.push(@item)
       end
 
