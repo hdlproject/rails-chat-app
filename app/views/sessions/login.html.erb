@@ -1,31 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+<div>
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  <h2>Login</h2>
+  <%= form_with url: "/login", method: :post do |form| %>
+    <label for="user_username">Username</label>:
+    <%= form.text_field :username %><br>
+    <label for="user_password">Password</label>:
+    <%= form.password_field :password %><br>
+    <%= form.submit "Log In" %><br>
+  <% end %>
 
-<body>
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
-
-<h2>Login</h2>
-<%= form_with url: "/login", method: :post do |form| %>
-  <label for="user_username">Username</label>:
-  <%= form.text_field :username %><br>
-  <label for="user_password">Password</label>:
-  <%= form.password_field :password %><br>
-  <%= form.submit "Log In" %><br>
-<% end %>
-
-<%= link_to "Register", "/register" %>
-</body>
-</html>
+  <%= link_to "Register", "/register" %>
+</div>

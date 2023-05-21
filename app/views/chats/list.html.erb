@@ -1,37 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Chat List</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+<div>
+  <h2><%= @members.map { |member| member.name }.join(" - ") %></h2>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-
-<body>
-<h2><%= @members.map { |member| member.name }.join(" - ") %></h2>
-
-<% if @chats.blank? %>
-  <p>..... No message .....</p>
-<% else %>
-  <% @chats.each do |c| %>
-    <ul>
-      <% if c.sender_id == @user.id %>
-        ..........
+  <% if @chats.blank? %>
+    <p>..... No message .....</p>
+  <% else %>
+    <div id="chat_list">
+      <% @chats.each do |c| %>
+        <ul>
+          <% if c.sender_id == @user.id %>
+            ..........
+          <% end %>
+          <%= c.message %>
+        </ul>
       <% end %>
-      <%= c.message %>
-    </ul>
+    </div>
   <% end %>
-<% end %>
 
-<%= form_with url: "/chats", method: :post do |form| %>
-  <label for="chat_message">Message</label>:
-  <%= form.text_field :message %>
-  <%= form.hidden_field :room_id, value: @room_id %>
-  <%= form.hidden_field :receiver_ids, :multiple => true, value: @receiver_ids %>
-  <%= form.submit "Submit" %>
-<% end %>
-</body>
-</html>
+  <%= form_with url: "/chats", method: :post do |form| %>
+    <label for="chat_message">Message</label>:
+    <%= form.text_field :message %>
+    <%= form.hidden_field :room_id, value: @room_id %>
+    <%= form.hidden_field :receiver_ids, :multiple => true, value: @receiver_ids %>
+    <%= form.submit "Submit" %>
+  <% end %>
+</div>

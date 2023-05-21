@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Room List</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+<div>
+  <h2>Room List</h2>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-
-<body>
-<h2>Room List</h2>
-
-<% if @items.blank? %>
-  <p>..... No room .....</p>
-<% else %>
-  <% @items.each do |i| %>
-    <ul><%= link_to i[:text], chats_path(room_id: i[:room_id], receiver_ids: i[:receiver_ids]) %></ul>
+  <% if @items.blank? %>
+    <p>..... No room .....</p>
+  <% else %>
+    <% @items.each do |i| %>
+      <ul><%= link_to i[:text], chats_path(room_id: i[:room_id], receiver_ids: i[:receiver_ids]) %></ul>
+    <% end %>
   <% end %>
-<% end %>
 
-<%= link_to "Create New Room", "/rooms/form" %>
-</body>
-</html>
+  <%= link_to "Create New Room", "/rooms/form" %>
+</div>

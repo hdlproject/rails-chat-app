@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Register</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+<div>
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-
-<body>
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
-
-<h2>Register</h2>
-<%= form_with url: "/rooms", method: :post do |form| %>
-  <label for="room_type">Type</label>:
-  <%= form.select :room_type, options_for_select(Room.room_types) %><br>
-  <label for="room_member">Type</label>:
-  <%= form.select :room_member, options_for_select(@users.map { |user| [user.name, user.id] }) %><br>
-  <%= form.submit "Create" %><br>
-<% end %>
-</body>
-</html>
+  <h2>Register</h2>
+  <%= form_with url: "/rooms", method: :post do |form| %>
+    <label for="room_type">Type</label>:
+    <%= form.select :room_type, options_for_select(Room.room_types) %><br>
+    <label for="room_member">Type</label>:
+    <%= form.select :room_member, options_for_select(@users.map { |user| [user.name, user.id] }) %><br>
+    <%= form.submit "Create" %><br>
+  <% end %>
+</div>
