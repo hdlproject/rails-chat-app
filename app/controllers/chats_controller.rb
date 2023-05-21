@@ -25,9 +25,15 @@ class ChatsController < ApplicationController
     if helpers.logged_in?
       @user = helpers.current_user
 
+      @room = Room.find(params[:room_id])
+
       @chat = Chat.create(message: params[:message], sender_id: @user.id, room_id: params[:room_id])
 
-      redirect_to controller: "chats", action: "index", room_id: params[:room_id], receiver_ids: params[:receiver_ids]
+      puts @room.id, @chat
+
+      ChatsChannel.broadcast_to(@room, @chat)
+
+      # redirect_to controller: "chats", action: "index", room_id: params[:room_id], receiver_ids: params[:receiver_ids]
     else
       redirect_to login_path
     end
