@@ -29,8 +29,6 @@ class ChatsController < ApplicationController
 
       @chat = Chat.create(message: params[:message], sender_id: @user.id, room_id: params[:room_id])
 
-      puts @room.id, @chat
-
       ChatsChannel.broadcast_to(@room, @chat)
 
       # redirect_to controller: "chats", action: "index", room_id: params[:room_id], receiver_ids: params[:receiver_ids]
