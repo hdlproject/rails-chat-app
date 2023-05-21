@@ -14,12 +14,14 @@ $(document).on('turbolinks:load', function () {
                 const html = this.createLine(data)
                 const element = $("#chat_list")
                 $(html).appendTo(element)
+                $("#message").val("")
+                $("#no_message").remove()
             },
 
             createLine(data) {
                 return `
                   <ul>
-                    ${data["message"]}
+                    .......... ${data["message"]}
                   </ul>
                 `
             }

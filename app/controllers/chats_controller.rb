@@ -23,13 +23,15 @@ class ChatsController < ApplicationController
 
   def create
     if helpers.logged_in?
-      @user = helpers.current_user
+      unless params[:message].empty?
+        @user = helpers.current_user
 
-      @room = Room.find(params[:room_id])
+        @room = Room.find(params[:room_id])
 
-      @chat = Chat.create(message: params[:message], sender_id: @user.id, room_id: params[:room_id])
+        @chat = Chat.create(message: params[:message], sender_id: @user.id, room_id: params[:room_id])
 
-      ChatsChannel.broadcast_to(@room, @chat)
+        ChatsChannel.broadcast_to(@room, @chat)
+      end
 
       # redirect_to controller: "chats", action: "index", room_id: params[:room_id], receiver_ids: params[:receiver_ids]
     else

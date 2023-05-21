@@ -2,7 +2,9 @@
   <h2><%= @members.map { |member| member.name }.join(" - ") %></h2>
 
   <% if @chats.blank? %>
-    <p>..... No message .....</p>
+    <div id="chat_list">
+      <p id="no_message">..... No message .....</p>
+    </div>
   <% else %>
     <div id="chat_list">
       <% @chats.each do |c| %>
@@ -21,6 +23,6 @@
     <%= form.text_field :message %>
     <%= form.hidden_field :room_id, value: @room_id %>
     <%= form.hidden_field :receiver_ids, :multiple => true, value: @receiver_ids %>
-    <%= form.submit "Submit" %>
+    <%= form.submit "Submit", data: { disable_with: false } %>
   <% end %>
 </div>
