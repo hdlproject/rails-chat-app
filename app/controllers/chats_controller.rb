@@ -2,12 +2,10 @@ class ChatsController < ApplicationController
   def index
     if helpers.logged_in?
       @user = helpers.current_user
-
-      @chats = Chat.where(room_id: params[:room_id])
-      @members = User.where(id: params[:receiver_ids])
-
-      @receiver_ids = params[:receiver_ids]
       @room_id = params[:room_id]
+
+      @chats = Chat.where(room_id: @room_id)
+      @members = User.where(id: params[:receiver_ids])
 
       render "list"
     else
@@ -15,41 +13,25 @@ class ChatsController < ApplicationController
     end
   end
 
-  def show
-    @chat = Chat.find(params[:id])
-
-    render json: @chat
-  end
-
   def create
     if helpers.logged_in?
-      unless params[:message].empty?
-        @user = helpers.current_user
+      unless chat_params[:message].empty?
+        user = helpers.current_user
 
-        @room = Room.find(params[:room_id])
-
-        @chat = Chat.create(message: params[:message], sender_id: @user.id, room_id: params[:room_id])
-
-        ChatsChannel.broadcast_to(@room, @chat)
+        chat = Chat.new(chat_params)
+        chat.sender_id = user.id
+        if chat.save
+          ChatsChannel.broadcast_to(chat.room, chat)
+        end
       end
-
-      # redirect_to controller: "chats", action: "index", room_id: params[:room_id], receiver_ids: params[:receiver_ids]
     else
       redirect_to login_path
     end
   end
 
-  def update
-    @chat = Chat.find(params[:id])
-    @chat.update(message: params[:message])
+  private
 
-    render json: "#{@chat.id} has been updated to #{@chat.message}"
-  end
-
-  def destroy
-    @chat = Chat.find(params[:id])
-    @chat.destroy
-
-    render json: "#{@chat.id} has been deleted"
+  def chat_params
+    params.require(:chat).permit(:message, :room_id)
   end
 end

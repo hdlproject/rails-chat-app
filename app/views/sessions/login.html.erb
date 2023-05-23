@@ -6,7 +6,7 @@
   <% end %>
 
   <h2>Login</h2>
-  <%= form_with url: "/login", method: :post do |form| %>
+  <%= form_with model: UserAccess.new, url: login_path do |form| %>
     <label for="user_username">Username</label>:
     <%= form.text_field :username %><br>
     <label for="user_password">Password</label>:

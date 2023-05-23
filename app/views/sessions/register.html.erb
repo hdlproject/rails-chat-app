@@ -6,7 +6,7 @@
   <% end %>
 
   <h2>Register</h2>
-  <%= form_with url: "/users", method: :post do |form| %>
+  <%= form_with model: User.new do |form| %>
     <label for="user_username">Username</label>:
     <%= form.text_field :username %><br>
     <label for="user_password">Password</label>:

@@ -6,7 +6,7 @@
   <% end %>
 
   <h2>Register</h2>
-  <%= form_with url: "/rooms", method: :post do |form| %>
+  <%= form_with model: Room.new do |form| %>
     <label for="room_type">Type</label>:
     <%= form.select :room_type, options_for_select(Room.room_types) %><br>
     <label for="room_member">Type</label>:

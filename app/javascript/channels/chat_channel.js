@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function () {
     consumer.subscriptions.create(
         {
             channel: "ChatsChannel",
-            room_id: $("#room_id").val()
+            room_id: $("#chat_room_id").val()
         }, {
             received(data) {
                 this.appendLine(data)
@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function () {
                 const html = this.createLine(data)
                 const element = $("#chat_list")
                 $(html).appendTo(element)
-                $("#message").val("")
+                $("#chat_message").val("")
                 $("#no_message").remove()
             },
 

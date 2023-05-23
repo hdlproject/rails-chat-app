@@ -1,12 +1,10 @@
 <div>
   <h2><%= @members.map { |member| member.name }.join(" - ") %></h2>
 
-  <% if @chats.blank? %>
-    <div id="chat_list">
+  <div id="chat_list">
+    <% if @chats.blank? %>
       <p id="no_message">..... No message .....</p>
-    </div>
-  <% else %>
-    <div id="chat_list">
+    <% else %>
       <% @chats.each do |c| %>
         <ul>
           <% if c.sender_id == @user.id %>
@@ -15,14 +13,13 @@
           <%= c.message %>
         </ul>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
-  <%= form_with url: "/chats", method: :post do |form| %>
+  <%= form_with model: Chat.new do |form| %>
     <label for="chat_message">Message</label>:
     <%= form.text_field :message %>
     <%= form.hidden_field :room_id, value: @room_id %>
-    <%= form.hidden_field :receiver_ids, :multiple => true, value: @receiver_ids %>
     <%= form.submit "Submit", data: { disable_with: false } %>
   <% end %>
 </div>

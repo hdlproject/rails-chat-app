@@ -1,13 +1,15 @@
 <div>
   <h2>Room List</h2>
 
-  <% if @items.blank? %>
-    <p>..... No room .....</p>
-  <% else %>
-    <% @items.each do |i| %>
-      <ul><%= link_to i[:text], chats_path(room_id: i[:room_id], receiver_ids: i[:receiver_ids]) %></ul>
+  <div id="room_list">
+    <% if @items.blank? %>
+      <p id="no_room">..... No room .....</p>
+    <% else %>
+      <% @items.each do |i| %>
+        <ul><%= link_to i[:text], chats_path(room_id: i[:room_id], receiver_ids: i[:receiver_ids]) %></ul>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
-  <%= link_to "Create New Room", "/rooms/form" %>
+  <%= link_to "Create New Room", controller: :rooms, action: :form %>
 </div>
