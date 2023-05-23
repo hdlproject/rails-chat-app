@@ -6,7 +6,7 @@
       <p id="no_room">..... No room .....</p>
     <% else %>
       <% @items.each do |i| %>
-        <ul><%= link_to i[:text], chats_path(room_id: i[:room_id], receiver_ids: i[:receiver_ids]) %></ul>
+        <ul><%= link_to i[:text], chats_path(room_id: i[:room_id]) %></ul>
       <% end %>
     <% end %>
   </div>

@@ -19,7 +19,7 @@
   <%= form_with model: Chat.new do |form| %>
     <label for="chat_message">Message</label>:
     <%= form.text_field :message %>
-    <%= form.hidden_field :room_id, value: @room_id %>
+    <%= form.hidden_field :room_id, value: @room.id %>
     <%= form.submit "Submit", data: { disable_with: false } %>
   <% end %>
 </div>

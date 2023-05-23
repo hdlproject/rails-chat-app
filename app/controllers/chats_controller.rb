@@ -1,10 +1,10 @@
 class ChatsController < ApplicationController
   def index
     @user = helpers.current_user
-    @room_id = params[:room_id]
+    @room = Room.find(params[:room_id])
+    @chats = Chat.where(room_id: @room.id)
 
-    @chats = Chat.where(room_id: @room_id)
-    @members = User.where(id: params[:receiver_ids])
+    @members = @room.members.filter { |member| member.id != @user.id }
 
     render "list"
   end
