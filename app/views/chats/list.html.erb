@@ -20,6 +20,7 @@
     <label for="chat_message">Message</label>:
     <%= form.text_field :message %>
     <%= form.hidden_field :room_id, value: @room.id %>
+    <%= form.hidden_field :user_id, value: @user.id %>
     <%= form.submit "Submit", data: { disable_with: false } %>
   <% end %>
 </div>

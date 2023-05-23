@@ -11,19 +11,24 @@ $(document).on('turbolinks:load', function () {
             },
 
             appendLine(data) {
-                const html = this.createLine(data)
+                const user_id = $("#chat_user_id").val()
+                const html = this.createLine(data, user_id)
                 const element = $("#chat_list")
                 $(html).appendTo(element)
                 $("#chat_message").val("")
                 $("#no_message").remove()
             },
 
-            createLine(data) {
-                return `
-                  <ul>
-                    .......... ${data["message"]}
-                  </ul>
-                `
+            createLine(data, user_id) {
+                let text = `<ul>`
+
+                if (data["sender_id"] === parseInt(user_id)) {
+                    text += `.......... `
+                }
+
+                text += `${data["message"]}</ul>`
+
+                return text
             }
         }
     )
