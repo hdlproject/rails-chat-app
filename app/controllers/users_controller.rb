@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def create
     begin
       user, user_access = User.create_user_and_access(user_params, user_access_params)

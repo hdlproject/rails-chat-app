@@ -1,39 +1,27 @@
 class RoomsController < ApplicationController
   def index
-    if helpers.logged_in?
-      @user = helpers.current_user
+    @user = helpers.current_user
 
-      @items = helpers.get_formatted_room_rows(@user.rooms)
+    @items = helpers.get_formatted_room_rows(@user.rooms)
 
-      render "list"
-    else
-      redirect_to login_path
-    end
+    render "list"
   end
 
   def form
-    if helpers.logged_in?
-      @users = User.where.not(id: session[:user_id])
+    @users = User.where.not(id: session[:user_id])
 
-      render "form"
-    else
-      redirect_to login_path
-    end
+    render "form"
   end
 
   def create
-    if helpers.logged_in?
-      sender = helpers.current_user
-      receiver = User.find(room_member_params[:room_member])
+    sender = helpers.current_user
+    receiver = User.find(room_member_params[:room_member])
 
-      room = Room.create(room_params)
-      room.members.push(sender)
-      room.members.push(receiver)
+    room = Room.create(room_params)
+    room.members.push(sender)
+    room.members.push(receiver)
 
-      redirect_to rooms_path
-    else
-      redirect_to login_path
-    end
+    redirect_to rooms_path
   end
 
   def room_params
