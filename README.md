@@ -1,24 +1,35 @@
-# README
+# Rails - Chat App
+Simple chat app created using Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## ERD
+?
 
-Things you may want to cover:
+## Diagram Block
+?
 
-* Ruby version
+## How to Run
+### Install dependencies
+```shell
+$ bundle install
+```
+### Migrate DB
+```shell
+$ rails db:migrate
+```
+### Seed DB Data
+```shell
+$ rails db:seed
+```
+### Run app
+```shell
+$ docker-compose up
+$ rails s
+```
+### Run Rails console
+```shell
+$ rails c
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## TODO
+- Implement auth mechanism defined in this [article](https://www.digitalocean.com/community/tutorials/how-to-set-up-user-authentication-with-devise-in-a-rails-7-application)
+- Implement session mechanism defined in this [article](https://orbit.love/blog/managing-server-side-sessions-in-rails)
