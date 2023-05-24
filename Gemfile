@@ -60,3 +60,4 @@ gem "net-http"
 gem 'stimulus-rails'
 gem 'jquery-rails'
 gem 'activerecord-session_store'
+gem 'sidekiq'
