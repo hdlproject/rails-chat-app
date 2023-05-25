@@ -22,6 +22,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    reset_session
+    redirect_to login_path
+  end
+
   private
 
   def user_access_username_params

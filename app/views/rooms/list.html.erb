@@ -11,5 +11,13 @@
     <% end %>
   </div>
 
-  <%= link_to "Create New Room", controller: :rooms, action: :form %>
+  <div>
+    <%= link_to "Create New Room", controller: :rooms, action: :form %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= link_to "Log Out", logout_path, method: :delete %>
+  </div>
 </div>
