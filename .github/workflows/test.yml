@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+        with:
+          ruby-version: '6.1.7'
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run static analyzer
+        run: brakeman && rubocop

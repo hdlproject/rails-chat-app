@@ -12,6 +12,11 @@ Simple chat app created using Rails
 ```shell
 $ bundle install
 ```
+### Run static analyzer
+```shell
+$ brakeman
+$ rubocop
+```
 ### Migrate DB
 ```shell
 $ rails db:migrate
