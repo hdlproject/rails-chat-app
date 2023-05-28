@@ -1,5 +1,5 @@
 {
-  "name": "rails-web-server",
+  "name": "rails-chat-app",
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",

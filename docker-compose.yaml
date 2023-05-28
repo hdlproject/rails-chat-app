@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: rails-web-server
+      POSTGRES_DB: rails-chat-app
     ports:
       - 5439:5432
     volumes:

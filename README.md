@@ -1,5 +1,5 @@
 # Rails - Chat App
-Simple chat app created using Rails
+A simple chat app created using Rails
 
 ## ERD
 ?
