@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+# rubocop:disable Style/NumericLiterals
+# rubocop:disable Metrics/BlockLength
 ActiveRecord::Schema.define(version: 2023_05_23_124707) do
+  # rubocop:enable Style/NumericLiterals
 
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 2023_05_23_124707) do
     t.index ['sender_id'], name: 'index_chats_on_sender_id'
   end
 
-# Could not dump table 'rooms' because of following StandardError
-#   Unknown type 'room_type' for column 'room_type'
+  # Could not dump table 'rooms' because of following StandardError
+  # Unknown type 'room_type' for column 'room_type'
 
   create_table 'rooms_users', id: false, force: :cascade do |t|
     t.bigint 'room_id', null: false
@@ -66,3 +69,4 @@ ActiveRecord::Schema.define(version: 2023_05_23_124707) do
   add_foreign_key 'rooms_users', 'users', column: 'member_id'
   add_foreign_key 'user_accesses', 'users'
 end
+# rubocop:enable Metrics/BlockLength

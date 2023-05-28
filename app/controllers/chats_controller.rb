@@ -10,15 +10,14 @@ class ChatsController < ApplicationController
   end
 
   def create
-    unless chat_params[:message].empty?
-      user = helpers.current_user
+    return if chat_params[:message].empty?
 
-      chat = Chat.new(chat_params)
-      chat.sender_id = user.id
-      if chat.save
-        ChatsChannel.broadcast_to(chat.room, chat)
-      end
-    end
+    user = helpers.current_user
+
+    chat = Chat.new(chat_params)
+    chat.sender_id = user.id
+
+    ChatsChannel.broadcast_to(chat.room, chat) if chat.save
   end
 
   private

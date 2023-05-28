@@ -2,15 +2,12 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
-    begin
-      user, user_access = User.create_user_and_access(user_params, user_access_params)
+    _user, _user_access = User.create_user_and_access(user_params, user_access_params)
 
-      redirect_to login_path
-    rescue ActiveRecord::RecordNotUnique
-      message = 'Username already exists'
-      redirect_to register_path, notice: message
-      return
-    end
+    redirect_to login_path
+  rescue ActiveRecord::RecordNotUnique
+    message = 'Username already exists'
+    redirect_to register_path, notice: message
   end
 
   private
