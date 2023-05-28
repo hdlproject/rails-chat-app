@@ -4,13 +4,13 @@ class RoomsController < ApplicationController
 
     @items = helpers.get_formatted_room_rows(@user.rooms)
 
-    render "list"
+    render 'list'
   end
 
   def form
     @users = User.where.not(id: session[:user_id])
 
-    render "form"
+    render 'form'
   end
 
   def create

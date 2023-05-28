@@ -3,7 +3,7 @@ module RoomsHelper
     items = []
     rooms.each do |room|
       item = {
-        text: "[%s] %s" % [room.room_type, room.members.map { |member| member.name }.join(" - ")],
+        text: "[%s] %s" % [room.room_type, room.members.map { |member| member.name }.join(' - ')],
         room_id: room.id,
       }
       items.push(item)

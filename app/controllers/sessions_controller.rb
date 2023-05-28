@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if helpers.logged_in?
       redirect_to rooms_path
     else
-      render "login"
+      render 'login'
     end
   end
 
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user_access.user_id
       redirect_to rooms_path
     else
-      message = "Username and Password combination is invalid"
+      message = 'Username and Password combination is invalid'
       redirect_to login_path, notice: message
     end
   end

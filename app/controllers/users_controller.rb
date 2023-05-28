@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
       redirect_to login_path
     rescue ActiveRecord::RecordNotUnique
-      message = "Username already exists"
+      message = 'Username already exists'
       redirect_to register_path, notice: message
       return
     end

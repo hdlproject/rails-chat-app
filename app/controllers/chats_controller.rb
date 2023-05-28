@@ -6,7 +6,7 @@ class ChatsController < ApplicationController
 
     @members = @room.members.filter { |member| member.id != @user.id }
 
-    render "list"
+    render 'list'
   end
 
   def create
